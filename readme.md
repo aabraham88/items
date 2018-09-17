@@ -30,6 +30,7 @@ npm run prod
 docker-compose exec php php artisan db:seed
 ```
 ## API specification:
+This solution involves an API REST and a Single Page Application. The API responds to the following actions:
 
 **List items**
 ----
