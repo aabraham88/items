@@ -91,7 +91,7 @@ class ItemController extends Controller
             $item->description = $request->description;
             $item->save();
 
-            return $this->success($item, 'Item updated correctly.', Response::HTTP_ACCEPTED);
+            return $this->success(new ItemResource($item), 'Item updated correctly.', Response::HTTP_ACCEPTED);
         } catch (\Exception $e) {
             return $this->error('Something bad happend.', Response::HTTP_BAD_REQUEST);
         }

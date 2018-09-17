@@ -70,7 +70,7 @@ window.createItem = () => {
 
   let imageFile = $('#newImageFile');
   let description = $('#new-description');
-  let formData = new FormData($('#createModal'));
+  let formData = new FormData();
   formData.append('imageFile', imageFile[0].files[0]);
   formData.append('description', description.val());
 
