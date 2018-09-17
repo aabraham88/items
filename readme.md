@@ -8,6 +8,12 @@ The project was created using the following technologies:
 
 ## Installation Steps
 
+
+### Create .env from .env.example
+```
+cp .env.example .env
+```
+
 ### Build project
 ```
 docker-compose up -d
@@ -17,16 +23,24 @@ docker-compose up -d
 ```
 docker-compose exec php composer install
 ```
+
+### Generate Application Key
+```
+docker-compose exec php php artisan key:generate
+```
+
 ### Install NPM dependencies
 ```
 npm install
 ```
+
 ### Build static files
 ```
 npm run prod
 ```
 ### Run seeder
 ```
+rsync --recursive test_images/* storage/app/images/
 docker-compose exec php php artisan db:seed
 ```
 ## API specification:
