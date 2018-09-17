@@ -1,65 +1,245 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## About the Exercise
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+The project was created using the following technologies:
+- Laravel 5.6.35
+- MongoDB
+- JQuery 3.2
+- Bootstrap 4
 
-## About Laravel
+## Installation Steps
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+### Build project
+```
+docker-compose up -d
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Install Composer dependencies
+```
+docker-compose exec php composer install
+```
+### Install NPM dependencies
+```
+npm install
+```
+### Build static files
+```
+npm run prod
+```
+### Run seeder
+```
+docker-compose exec php php artisan db:seed
+```
+## API specification:
+This solution involves an API REST and a Single Page Application. The API responds to the following actions:
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+**List items**
+----
+  Returns all the items in JSON data
 
-## Learning Laravel
+* **URL**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+  /api/v1/items
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+* **Method:**
 
-## Laravel Sponsors
+  `GET`
+  
+*  **URL Params**
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+   None 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
+* **Success Response:**
 
-## Contributing
+  * **Code:** 200 <br />
+    **Content:** <br />
+    ```
+    {
+      "data": 
+        [
+          {
+            "id": "5b9ef86b1257c500ba179f42",
+            "description": "Vel deserunt ducimus in aut ipsa adipisci a laudantium.",
+            "image_link": "http://localhost/api/v1/items/5b9ef86b1257c500ba179f42/image?nocache=1537144939"
+          }
+        ]
+    }
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Show item**
+----
 
-## Security Vulnerabilities
+Returns JSON data about a single item
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* **URL**
 
-## License
+  /api/v1/items/:id
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `id=[string]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** <br />
+    ```
+    {
+      "data": {
+          "id": "5b9ef86b1257c500ba179f42",
+          "description": "Vel deserunt ducimus in aut ipsa adipisci a laudantium.",
+          "image_link": "http://localhost/api/v1/items/5b9ef86b1257c500ba179f42/image?nocache=1537144939"
+      }
+    }
+    ```
+    
+**Create item**
+----
+Creates one item.
+
+* **URL**
+
+  /api/v1/items
+
+* **Method:**
+
+  `POST`
+
+* **Data Params**
+
+     **Required:**
+ 
+   `imageFile=[File]`
+   `description=[string]`
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** <br />
+    ```
+    {
+      "data":{
+          "id": "5b9f13801257c500c573b112",
+          "description": "Test description",
+          "image_link": "http:\/\/localhost\/api\/v1\/items\/5b9f13801257c500c573b112\/image?nocache=1537151872"
+      },
+      "message": "Item saved correctly."
+    }
+    ```
+ 
+* **Error Response:** 
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ message : "Something bad happened" }`
+    
+**Edit item**
+----
+Edit a single item
+
+* **URL**
+
+  /api/v1/items/:id
+
+* **Method:**
+
+   `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `id=[string]`
+
+* **Data Params**
+
+   **Required:**
+ 
+   `description=[string]`
+
+   **Optional:**
+ 
+   `imageFile=[file]`
+
+
+* **Success Response:**
+
+  * **Code:** 202 <br />
+    **Content:** <br />
+    ```
+    {
+      "data": {
+        "id": "5b9ef86c1257c500ba179f43",
+        "description": "Test updated",
+        "image_link": "http://localhost/api/v1/items/5b9ef86c1257c500ba179f43/image?nocache=1537153263"
+      },
+      "message": "Item updated correctly."
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ message : "Something bad happened" }`
+    
+**Delete item**
+----
+ Delete one item
+
+* **URL**
+
+  /api/v1/items/:id
+
+* **Method:**
+
+   `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `id=[string]`
+   
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"message":"Item deleted correctly."}`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ message : "Something bad happened" }`
+    
+ **Sort items**
+----
+ Change the order of the items in the list
+
+* **URL**
+
+  /api/v1/items/sort
+
+* **Method:**
+
+   `POST`
+  
+*  **Data Params**
+
+   **Required:**
+ 
+   `items=[json]`
+   
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"data":null,"message":"Items ordered  correctly."}`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ message : "Something bad happened" }`
+    
+       
