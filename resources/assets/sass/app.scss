@@ -1,0 +1,83 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+.ajax-response {
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+html, body {
+  background-color: #fff;
+  color: #636b6f;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.alert-dismissible button {
+  margin: 0;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 84px;
+}
+
+.links > a {
+  color: #636b6f;
+  padding: 0 25px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+button {
+  margin: 5px 10px;
+}
+
+#counter {
+  position: fixed;
+  top: 20px;
+  left: 10px;
+  div {
+    border-radius: 5px;
+    background-color: rgb(25, 126, 194);
+    width: 240px;
+    p {
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+}
+
+button > i.fa {
+  margin-right: 10px;
+}
+
+.generalMessageWrapper,
+.warningWrapper {
+  display: none;
+}
